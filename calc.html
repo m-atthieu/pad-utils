@@ -1,0 +1,340 @@
+<!doctype html>
+<html ng-app="padCalcApp">
+  <head>
+    <title>PaD Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="calc.css" />
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+    <script src="calc.js"></script>
+  </head>
+	<body ng-controller="MainCtrl">
+	<div class="container-fluid">
+		<table class="table table-condensed">
+			<tr>
+				<td></td>
+				<th>Leader</th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<th>Friend</th>
+			</tr>
+			<!-- ID -->
+			<tr>
+				<th class="text-middle" style="width: 7%;">ID</th>
+				<td>
+					<input type="text" class="form-control form-control-80p" ng-model="team_var.id[0]" ng-change="change_id(0)"/>
+					<img ng-src="http://www.padherder.com{{ team[0].image40_href }}" class="icon" />
+				</td>
+				<td>
+					<input type="text" class="form-control form-control-80p" ng-model="team_var.id[1]" ng-change="change_id(1)"/>
+					<img ng-src="http://www.padherder.com{{ team[1].image40_href }}" class="icon" />
+				</td>
+				<td>
+					<input type="text" class="form-control form-control-80p" ng-model="team_var.id[2]" ng-change="change_id(2)"/>
+					<img ng-src="http://www.padherder.com{{ team[2].image40_href }}" class="icon" />
+				</td>
+				<td>
+					<input type="text" class="form-control form-control-80p" ng-model="team_var.id[3]" ng-change="change_id(3)"/>
+					<img ng-src="http://www.padherder.com{{ team[3].image40_href }}" class="icon" />
+				</td>
+				<td>
+					<input type="text" class="form-control form-control-80p" ng-model="team_var.id[4]" ng-change="change_id(4)"/>
+					<img ng-src="http://www.padherder.com{{ team[4].image40_href }}" class="icon" />
+				</td>
+				<td>
+					<input type="text" class="form-control form-control-80p" ng-model="team_var.id[5]" ng-change="change_id(5)"/>
+					<img ng-src="http://www.padherder.com{{ team[5].image40_href }}" class="icon" />
+				</td>
+			</tr>
+			<!-- Name -->
+			<tr>
+				<th class="text-middle">Name</th>
+				<td>{{ team[0].name }}</td>
+				<td>{{ team[1].name }}</td>
+				<td>{{ team[2].name }}</td>
+				<td>{{ team[3].name }}</td>
+				<td>{{ team[4].name }}</td>
+				<td>{{ team[5].name }}</td>
+			</tr>
+			<!-- Levels -->
+			<tr>
+				<th class="text-middle">Cur. Lvl</th>
+				<td><input type="number" class="form-control" ng-model="team_var.level[0]" placeholder="max level {{ team[0].max_level }}" /></td>
+				<td><input type="number" class="form-control" ng-model="team_var.level[1]" placeholder="max level {{ team[1].max_level }}" /></td>
+				<td><input type="number" class="form-control" ng-model="team_var.level[2]" placeholder="max level {{ team[2].max_level }}" /></td>
+				<td><input type="number" class="form-control" ng-model="team_var.level[3]" placeholder="max level {{ team[3].max_level }}" /></td>
+				<td><input type="number" class="form-control" ng-model="team_var.level[4]" placeholder="max level {{ team[4].max_level }}" /></td>
+				<td><input type="number" class="form-control" ng-model="team_var.level[5]" placeholder="max level {{ team[5].max_level }}" /></td>
+			</tr>
+			<!-- Awakenings -->
+				<tr>
+					<th class="text-middle">Awakenings</th>
+					<td>
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.hp[0]"  placeholder="HP" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.atk[0]" placeholder="ATK" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.rcv[0]" placeholder="RCV" />
+					</td>
+					<td>
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.hp[1]"  placeholder="HP" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.atk[1]" placeholder="ATK" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.rcv[1]" placeholder="RCV" />
+					</td>
+					<td>
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.hp[2]"  placeholder="HP" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.atk[2]" placeholder="ATK" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.rcv[2]" placeholder="RCV" />
+					</td>
+					<td>
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.hp[3]"  placeholder="HP" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.atk[3]" placeholder="ATK" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.rcv[3]" placeholder="RCV" />
+					</td>
+					<td>
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.hp[4]"  placeholder="HP" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.atk[4]" placeholder="ATK" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.rcv[4]" placeholder="RCV" />
+					</td>
+					<td>
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.hp[5]"  placeholder="HP" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.atk[5]" placeholder="ATK" />
+						<input type="number" class="form-control f-c-33p" ng-model="team_var.awkn.rcv[5]" placeholder="RCV" />
+					</td>
+				</tr>
+				<!-- - TPA -->
+				<tr>
+					<th class="text-middle">TPA Awaken.</th>
+					<td><input type="number" class="form-control" ng-model="team_var.awkn.tpa[0]" placeholder="max {{ max_tpa(0) }}" /></td>
+					<td><input type="number" class="form-control" ng-model="team_var.awkn.tpa[1]" placeholder="max {{ max_tpa(1) }}" /></td>
+					<td><input type="number" class="form-control" ng-model="team_var.awkn.tpa[2]" placeholder="max {{ max_tpa(2) }}" /></td>
+					<td><input type="number" class="form-control" ng-model="team_var.awkn.tpa[3]" placeholder="max {{ max_tpa(3) }}" /></td>
+					<td><input type="number" class="form-control" ng-model="team_var.awkn.tpa[4]" placeholder="max {{ max_tpa(4) }}" /></td>
+					<td><input type="number" class="form-control" ng-model="team_var.awkn.tpa[5]" placeholder="max {{ max_tpa(5) }}" /></td>
+				</tr>
+			<!-- Eggs -->
+			<tr>
+				<th class="text-middle">+Eggs</th>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.hp[0]"  placeholder="HP"  max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.atk[0]" placeholder="ATK" max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.rcv[0]" placeholder="RCV" max="99" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.hp[1]"  placeholder="HP"  max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.atk[1]" placeholder="ATK" max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.rcv[1]" placeholder="RCV" max="99" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.hp[2]"  placeholder="HP"  max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.atk[2]" placeholder="ATK" max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.rcv[2]" placeholder="RCV" max="99" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.hp[3]"  placeholder="HP"  max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.atk[3]" placeholder="ATK" max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.rcv[3]" placeholder="RCV" max="99" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.hp[4]"  placeholder="HP"  max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.atk[4]" placeholder="ATK" max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.rcv[4]" placeholder="RCV" max="99" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.hp[5]"  placeholder="HP"  max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.atk[5]" placeholder="ATK" max="99" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.eggs.rcv[5]" placeholder="RCV" max="99" />
+				</td>
+			</tr>
+			<!-- Latent -->
+			<tr>
+				<th class="text-middle">Latent Awaken.</th>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.hp[0]"  max="5" placeholder="HP" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.atk[0]" placeholder="ATK" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.rcv[0]" placeholder="RCV" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.hp[1]"  placeholder="HP" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.atk[1]" placeholder="ATK" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.rcv[1]" placeholder="RCV" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.hp[2]"  placeholder="HP" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.atk[2]" placeholder="ATK" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.rcv[2]" placeholder="RCV" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.hp[3]"  placeholder="HP" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.atk[3]" placeholder="ATK" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.rcv[3]" placeholder="RCV" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.hp[4]"  placeholder="HP" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.atk[4]" placeholder="ATK" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.rcv[4]" placeholder="RCV" />
+				</td>
+				<td>
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.hp[5]"  placeholder="HP" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.atk[5]" placeholder="ATK" />
+					<input type="number" class="form-control f-c-33p" ng-model="team_var.latent.rcv[5]" placeholder="RCV" />
+				</td>
+			</tr>
+			<!-- Stats -->
+			<tr>
+				<th class="text-middle">HP/ATK/RCV</th>
+				<td>{{ calc_stat('hp', 0) | number }} / {{ calc_stat('atk', 0) | number }} / {{ calc_stat('rcv', 0) | number }}</td>
+				<td>{{ calc_stat('hp', 1) | number }} / {{ calc_stat('atk', 1) | number }} / {{ calc_stat('rcv', 1) | number }}</td>
+				<td>{{ calc_stat('hp', 2) | number }} / {{ calc_stat('atk', 2) | number }} / {{ calc_stat('rcv', 2) | number }}</td>
+				<td>{{ calc_stat('hp', 3) | number }} / {{ calc_stat('atk', 3) | number }} / {{ calc_stat('rcv', 3) | number }}</td>
+				<td>{{ calc_stat('hp', 4) | number }} / {{ calc_stat('atk', 4) | number }} / {{ calc_stat('rcv', 4) | number }}</td>
+				<td>{{ calc_stat('hp', 5) | number }} / {{ calc_stat('atk', 5) | number }} / {{ calc_stat('rcv', 5) | number }}</td>
+			</tr>
+			<!-- HP Multiplier -->
+			<!-- RCV Multiplier -->
+			<!-- Base Damage -->
+			<tr>
+				<td></td>
+				<th class="text-center">Fire</th>
+				<th class="text-center">Water</th>
+				<th class="text-center">Wood</th>
+				<th class="text-center">Light</th>
+				<th class="text-center">Dark</th>
+				<td><!-- empty --></td>
+			</tr>
+			<tr>
+				<th class="text-middle">Base dmg</th>
+				<td class="attr-Fire  text-center">{{ base_dmg('Fire')  | number }}</td>
+				<td class="attr-Water text-center">{{ base_dmg('Water') | number }}</td>
+				<td class="attr-Wood  text-center">{{ base_dmg('Wood')  | number }}</td>
+				<td class="attr-Light text-center">{{ base_dmg('Light') | number }}</td>
+				<td class="attr-Dark  text-center">{{ base_dmg('Dark')  | number }}</td>
+				<td><!-- empty --></td>
+			</tr>
+			<!-- OE Awakenings -->
+			<tr>
+				<th class="text-middle">OE Awak.</th>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.oe['Fire']"   placeholder="max {{ max_oe('Fire')  }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.oe['Water']"  placeholder="max {{ max_oe('Water') }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.oe['Wood']"   placeholder="max {{ max_oe('Wood')  }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.oe['Light']"  placeholder="max {{ max_oe('Light') }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.oe['Dark']"   placeholder="max {{ max_oe('Dark')  }}" /></td>
+				<td><!-- empty --></td>
+			</tr>
+			<!-- Row Awakenings -->
+			<tr>
+				<th class="text-middle">Row Awak.</th>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.row['Fire']"   placeholder="max {{ max_re('Fire')  }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.row['Water']"  placeholder="max {{ max_re('Water') }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.row['Wood']"   placeholder="max {{ max_re('Wood')  }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.row['Light']"  placeholder="max {{ max_re('Light') }}" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.awkn.row['Dark']"   placeholder="max {{ max_re('Dark')  }}" /></td>
+				<td><!-- empty --></td>
+			</tr>
+			<!-- ATK Multiplier -->
+			<tr>
+				<th class="text-middle">ATK Mult</th>
+				<td class="text-center text-middle">Leader</td>
+				<td><input type="number" min="1" class="form-control" ng-model="board_var.atk_mult.leader" title="{{ get_leader_skill() }}" /></td>
+				<td class="text-center text-middle">Friend</td>
+				<td><input type="number" min="1" class="form-control" ng-model="board_var.atk_mult.friend" title="{{ get_friend_leader_skill() }}" /></td>
+				<td class="text-center text-middle">Active Skill</td>
+				<td><input type="number" min="1" class="form-control" ng-model="board_var.atk_mult.as" /></td>
+			</tr>
+			<!-- COMBO DAMAGE Calculation -->
+			<!-- Current Enhanced Orbs -->
+			<!--tr>
+				<th class="text-middle">num. of OE</th>
+				<td><input type="number" class="form-control" ng-model="board_var.oe['Fire']"  placeholder="# Enh. Fire Orbs"  /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.oe['Water']" placeholder="# Enh. Water Orbs" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.oe['Wood']"  placeholder="# Enh. Wood Orbs"  /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.oe['Light']" placeholder="# Enh. Light Orbs" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.oe['Dark']"  placeholder="# Enh. Dark Orbs"  /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.oe['Heart']" placeholder="# Enh. Heal Orbs"  /></td>
+			</tr-->
+			<!-- Nb of matched Rows -->
+			
+			<tr class="bordered">
+				<th class="text-middle">num. of rows</th>
+				<td><input type="number" class="form-control" ng-model="board_var.rows['Fire']"  placeholder="# Fire Row"  /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.rows['Water']" placeholder="# Water Row" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.rows['Wood']"  placeholder="# Wood Row"  /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.rows['Light']" placeholder="# Light Row" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.rows['Dark']"  placeholder="# Dark Row"  /></td>
+				<td><!-- empty --></td>
+			</tr>
+			<!-- Matched Orbs -->
+			<tr  class="bordered" ng-repeat="c in [3, 4, 5, 30]">
+				<th class="text-middle">{{ c }}-orb match</th>
+				<td><input type="number" class="form-control" ng-model="board_var.combo[c].Fire"  placeholder="{{ c }}-orbs Fire match"  /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.combo[c].Water" placeholder="{{ c }}-orbs Water match" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.combo[c].Wood"  placeholder="{{ c }}-orbs Wood match"  /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.combo[c].Light" placeholder="{{ c }}-orbs Light match" /></td>
+				<td><input type="number" class="form-control" ng-model="board_var.combo[c].Dark"  placeholder="{{ c }}-orbs Dark match"  /></td>
+				<td class="text-center"><span ng-if="c == 3">{{ board_var.nb_cmb() }} combo{{ board_var.nb_cmb() > 1? 's':'' }}</span></td>
+			</tr>
+			
+			<!-- Individual Damage -->
+			<tr>
+				<th class="text-middle">Individual Dmg</th>
+				<td>{{ team[0].name }}</td>
+				<td>{{ team[1].name }}</td>
+				<td>{{ team[2].name }}</td>
+				<td>{{ team[3].name }}</td>
+				<td>{{ team[4].name }}</td>
+				<td>{{ team[5].name }}</td>
+			</tr>
+			<tr>
+				<th class="text-middle">Main Element</th>
+				<td class="attr-{{ team[0].element }}">{{ individual_dmg(0, 'main') | number }}</td>
+				<td class="attr-{{ team[1].element }}">{{ individual_dmg(1, 'main') | number }}</td>
+				<td class="attr-{{ team[2].element }}">{{ individual_dmg(2, 'main') | number }}</td>
+				<td class="attr-{{ team[3].element }}">{{ individual_dmg(3, 'main') | number }}</td>
+				<td class="attr-{{ team[4].element }}">{{ individual_dmg(4, 'main') | number }}</td>
+				<td class="attr-{{ team[5].element }}">{{ individual_dmg(5, 'main') | number }}</td>
+			</tr>
+			<tr>
+				<th class="text-middle">Sub Element</th>
+				<td class="attr-{{ team[0].element2 }}">{{ individual_dmg(0, 'sub') | number }}</td>
+				<td class="attr-{{ team[1].element2 }}">{{ individual_dmg(1, 'sub') | number }}</td>
+				<td class="attr-{{ team[2].element2 }}">{{ individual_dmg(2, 'sub') | number }}</td>
+				<td class="attr-{{ team[3].element2 }}">{{ individual_dmg(3, 'sub') | number }}</td>
+				<td class="attr-{{ team[4].element2 }}">{{ individual_dmg(4, 'sub') | number }}</td>
+				<td class="attr-{{ team[5].element2 }}">{{ individual_dmg(5, 'sub') | number }}</td>
+			</tr>
+			<!-- Total Damage -->
+			<tr>
+				<th class="text-middle">Total Damage</th>
+				<td class="attr-Fire" >{{ total_dmg('Fire')  | number }}</td>
+				<td class="attr-Water">{{ total_dmg('Water') | number }}</td>
+				<td class="attr-Wood" >{{ total_dmg('Wood')  | number }}</td>
+				<td class="attr-Light">{{ total_dmg('Light') | number }}</td>
+				<td class="attr-Dark" >{{ total_dmg('Dark')  | number }}</td>
+				<td></td>
+			</tr>
+			<!-- Enemy Damage -->
+			<tr>
+				<th class="text-middle">Enemy</th>
+				<td class="text-center text-middle">Attr</td>
+				<td class="form-group">
+					<select type="text" class="form-control" ng-model="board_var.enemy.attr">
+						<option value="Fire" >Fire</option>
+						<option value="Water">Water</option>
+						<option value="Wood" >Wood</option>
+						<option value="Light">Light</option>
+						<option value="Dark" >Dark</option>
+					</select>
+				</td>
+				<td class="text-center text-middle">Defense</td>
+				<td><input type="number" min="0" class="form-control" ng-model="board_var.enemy.defense" /></td>
+				<td class="text-center text-middle">Total Damage</td>
+				<td>{{ total_dmg('Fire', true) + total_dmg('Water', true) + total_dmg('Wood', true) + total_dmg('Light', true) + total_dmg('Dark', true) | number }}</td>
+			</tr>
+			<!-- Final Damage -->
+		</table>
+		
+
+	</div>
+	</body>
+</html>

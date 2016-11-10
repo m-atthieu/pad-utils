@@ -1,0 +1,61 @@
+body {
+	font-size: 12px;
+}
+
+.text-middle {
+	vertical-align: middle !important;
+}
+
+.icon {
+	max-width:  24px;
+	max-height: 24px;
+}
+
+tr.bordered {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+
+.form-control {
+	height: 24px;
+	font-size: 12px;
+}
+
+select.form-control {
+	padding: 2px 12px;
+}
+
+.form-control-80p {
+	width: 80%;
+	display: inline;
+}
+
+.f-c-50p {
+	width: 50%;
+	display: inline;
+}
+
+.f-c-33p {
+	width: 32%;
+	display: inline;
+}
+
+.attr-Fire {
+	color: #f00;
+}
+
+.attr-Water {
+	color: #00f;
+}
+
+.attr-Wood {
+	color: #3d2;
+}
+
+.attr-Light {
+	color: #f71;
+}
+
+.attr-Dark {
+	color: #81e;
+}
